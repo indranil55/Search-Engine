@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Search Engine - Offline & SEO Friendly</title>
+    <title>My Offline Search Engine</title>
     <link rel="stylesheet" href="style.css">
     
     <!-- PWA Manifest Link -->
@@ -18,20 +18,18 @@
             <span style="color: #4285F4;">M</span><span style="color: #EA4335;">y</span><span style="color: #FBBC05;">S</span><span style="color: #4285F4;">e</span><span style="color: #34A853;">a</span><span style="color: #EA4335;">r</span><span style="color: #4285F4;">c</span><span style="color: #34A853;">h</span>
         </h1>
 
-        <!-- Search Form (Searches directly on Google) -->
-        <form action="https://www.google.com/search" method="GET" target="_blank">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" name="q" placeholder="Search Google or type a URL..." autocomplete="off" required>
-            </div>
-            
-            <!-- Buttons -->
-            <div class="button-group">
-                <button type="submit">Google Search</button>
-                <button type="button" onclick="alert('Service Worker and Offline Mode are active!')">Offline Status</button>
-            </div>
-        </form>
+        <!-- Local Search Form -->
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search saved local database..." autocomplete="off">
+        </div>
+
+        <!-- Search Results Section -->
+        <div id="resultsContainer" class="results-container"></div>
     </div>
+
+    <!-- Link JavaScript -->
+    <script src="script.js"></script>
 
     <!-- Register Service Worker for Offline Capability -->
     <script>
