@@ -1,7 +1,8 @@
-const CACHE_NAME = 'my-search-v1';
+const CACHE_NAME = 'my-offline-search-v2';
 const assetsToCache = [
   './index.html',
   './style.css',
+  './script.js',
   './manifest.json'
 ];
 
