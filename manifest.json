@@ -1,15 +1,37 @@
-{
-  "name": "My Search Engine",
-  "short_name": "MySearch",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4285F4",
-  "icons": [
-    {
-      "src": "icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
+// Apni ekhane apnar proyojon moto joto khushi data add korte paren
+const localDatabase = [
+    { title: "HTML Basics", description: "Learn how to structure web pages using HTML tags and elements." },
+    { title: "CSS Styling", description: "Design responsive and beautiful layouts with CSS properties and flexbox." },
+    { title: "JavaScript Guide", description: "Make web applications interactive and handle logic using vanilla JavaScript." },
+    { title: "Progressive Web Apps (PWA)", description: "Build web apps that work offline using Service Workers and manifest files." },
+    { title: "GitHub Pages Hosting", description: "Host your static websites completely free using GitHub repositories." }
+];
+
+const searchInput = document.getElementById('searchInput');
+const resultsContainer = document.getElementById('resultsContainer');
+
+searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    resultsContainer.innerHTML = '';
+
+    if (query === '') {
+        return;
     }
-  ]
-}
+
+    const filteredResults = localDatabase.filter(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.description.toLowerCase().includes(query)
+    );
+
+    if (filteredResults.length === 0) {
+        resultsContainer.innerHTML = '<p style="color: #666; text-align: center;">No offline results found.</p>';
+        return;
+    }
+
+    filteredResults.forEach(result => {
+        const div = document.createElement('div');
+        div.classList.add('result-item');
+        div.innerHTML = `<h3>${result.title}</h3><p>${result.description}</p>`;
+        resultsContainer.appendChild(div);
+    });
+});
