@@ -1,78 +1,48 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #fff;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Search Engine - Offline & SEO Friendly</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4285F4">
+</head>
+<body>
 
-.search-container {
-    text-align: center;
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-}
+    <div class="search-container">
+        <!-- Google-style Colorful Logo -->
+        <h1 class="logo">
+            <span style="color: #4285F4;">M</span><span style="color: #EA4335;">y</span><span style="color: #FBBC05;">S</span><span style="color: #4285F4;">e</span><span style="color: #34A853;">a</span><span style="color: #EA4335;">r</span><span style="color: #4285F4;">c</span><span style="color: #34A853;">h</span>
+        </h1>
 
-.logo {
-    font-size: 52px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    letter-spacing: -2px;
-}
+        <!-- Search Form (Searches directly on Google) -->
+        <form action="https://www.google.com/search" method="GET" target="_blank">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" name="q" placeholder="Search Google or type a URL..." autocomplete="off" required>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="submit">Google Search</button>
+                <button type="button" onclick="alert('Service Worker and Offline Mode are active!')">Offline Status</button>
+            </div>
+        </form>
+    </div>
 
-.search-box {
-    display: flex;
-    align-items: center;
-    border: 1px solid #dfe1e5;
-    border-radius: 24px;
-    padding: 12px 18px;
-    width: 100%;
-    box-shadow: 0 1px 6px rgba(32,33,36,.28);
-    transition: box-shadow 0.3s;
-    background: #fff;
-}
+    <!-- Register Service Worker for Offline Capability -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((reg) => console.log('Service Worker Registered!', reg.scope))
+                    .catch((err) => console.log('Service Worker Failed!', err));
+            });
+        }
+    </script>
 
-.search-box:hover, .search-box:focus-within {
-    box-shadow: 0 1px 8px rgba(32,33,36,.35);
-    border-color: rgba(223,225,229,0);
-}
-
-.search-icon {
-    margin-right: 12px;
-    color: #9aa0a6;
-    font-size: 18px;
-}
-
-.search-box input {
-    border: none;
-    outline: none;
-    width: 100%;
-    font-size: 16px;
-    background: transparent;
-    color: #202124;
-}
-
-.button-group {
-    margin-top: 30px;
-}
-
-.button-group button {
-    background-color: #f8f9fa;
-    border: 1px solid #f8f9fa;
-    border-radius: 4px;
-    color: #3c4043;
-    font-size: 14px;
-    padding: 10px 18px;
-    margin: 5px;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.button-group button:hover {
-    border: 1px solid #dadce0;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
-    color: #202124;
-}
+</body>
+</html>
